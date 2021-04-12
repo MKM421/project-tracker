@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 // FILE IMPORTS
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from "./useProjectForm";
+import { devList, pmList } from '../../utils/selectOptions';
 
 export default function ProjectForm(props) {
 
@@ -52,6 +53,15 @@ export default function ProjectForm(props) {
           />
         </Grid>
         <Grid item xs={6}>
+          <Controls.Select
+            name="projectManager"
+            label="Project Manager"
+            value={values.projectManager}
+            options={pmList}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item xs={6}>
           <Controls.DatePicker
             name="startDate"
             label="Start Date"
@@ -60,18 +70,19 @@ export default function ProjectForm(props) {
           />
         </Grid>
         <Grid item xs={6}>
-          <Controls.DatePicker
-            name="launchDate"
-            label="Launch Date"
-            value={values.launchDate}
+          <Controls.Select
+            name="dev"
+            label="Developer"
+            value={values.dev}
+            options={devList}
             onChange={handleInputChange}
           />
         </Grid>
         <Grid item xs={6}>
           <Controls.DatePicker
-            name="devReviewDate"
-            label="Dev Review Date"
-            value={values.devReviewDate}
+            name="dueDate"
+            label="Due Date"
+            value={values.dueDate}
             onChange={handleInputChange}
           />
         </Grid>
@@ -81,21 +92,22 @@ export default function ProjectForm(props) {
             label="Project Notes"
             multiline={true}
             rows={6}
-            value={values.projectNotes}
+            value={values.projectNotes.trim('')}
             onChange={handleInputChange}
             error={errors.fullName}
           />
-        </Grid>
-        <Grid item xs={6}>
-          <Controls.Button
-            type="submit"
-            text="Submit"
-            color="primary"
-          />
-          <Controls.Button
-            text="Reset"
-            color="default"
-            onClick={resetForm} />
+          </Grid>
+          <Grid item xs={6}></Grid>
+          <Grid item xs={6}>
+            <Controls.Button
+              type="submit"
+              text="Submit"
+              color="primary"
+            />
+            <Controls.Button
+              text="Reset"
+              color="default"
+              onClick={resetForm} />
         </Grid>
       </Grid>
     </Form>

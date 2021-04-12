@@ -1,11 +1,12 @@
 // PACKAGE IMPORTS
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from '@material-ui/core/Button';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import Tooltip from '@material-ui/core/Tooltip';
 import EditIcon from "@material-ui/icons/Edit";
-import CloseIcon from '@material-ui/icons/Close';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Dialog from '@material-ui/core/Dialog';
@@ -22,7 +23,9 @@ import { dateTimeOptions } from '../../utils/currentDateTime';
 
 const headCells = [
   { id: 'projectName', label: 'Project Name' },
-  { id: 'devReviewDate', label: 'Dev Review Date' },
+  { id: 'dueDate', label: 'Due Date' },
+  { id: 'projectManager', label:'PM' },
+  { id: 'dev', label:'Dev' },
   { id: 'lastModified', label: 'Last Modified' },
   { id: 'actions', label: 'Actions', disableSorting: true }
 ]
@@ -58,7 +61,6 @@ const ProjectsList = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpenSnack(false);
   };
 
@@ -66,7 +68,6 @@ const ProjectsList = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpenEditSnack(false);
   };
 
@@ -76,6 +77,20 @@ const ProjectsList = (props) => {
   }
 
 
+  // save data to localStorage
+  useEffect(() => {
+    localStorage.setItem('project-list', JSON.stringify(projects));
+  }, [projects]);
+
+  // get project data from local storage
+  useEffect(() => {
+    let savedProjects = localStorage.getItem('project-list');
+    if (savedProjects) {
+      //setProjects(JSON.parse(savedProjects))
+      //projectsDispatch({ type: 'ADD_PROJECT'});
+    }
+  }, [])
+
 
   return (
     <div className="table">
@@ -84,21 +99,34 @@ const ProjectsList = (props) => {
         <TableBody>
           {recordsAfterPagingAndSorting(filteredProjects).map(item => (
             <TableRow key={item.id}>
-              <TableCell onClick={() => routeToTracks(item.id)}>{item.projectName}</TableCell>
-              <TableCell onClick={() => routeToTracks(item.id)}>{item.devReviewDate.toLocaleString('en-US', dateTimeOptions)}</TableCell>
-              <TableCell onClick={() => routeToTracks(item.id)}>{item.lastModified}</TableCell>
+              <TableCell>{item.projectName}</TableCell>
+              <TableCell>{item.dueDate.toLocaleString('en-US', dateTimeOptions)}</TableCell>
+              <TableCell>{item.projectManager}</TableCell>
+              <TableCell>{item.dev}</TableCell>
+              <TableCell>{item.lastModified}</TableCell>
               <TableCell>
-                <Button className={"button"} color="secondary" variant="contained" size="small"
-                  onClick={() => { setOpenPopup(true); setProjClicked(item) }}
-                >
-                  <EditIcon />
-                </Button>
-                <Button
-                  className={"button"} color="secondary" variant="contained" size="small"
-                  onClick={() => handleDeleteProject(item.id)}
-                >
-                  <CloseIcon />
-                </Button>
+                <Tooltip title="Edit project" arrow>
+                  <Button
+                    className="action-btn"
+                    color="primary"
+                    variant="contained"
+                    size="small"
+                    onClick={() => { setOpenPopup(true); setProjClicked(item) }}
+                  >
+                    <EditIcon />
+                  </Button>
+                </Tooltip>
+                <Tooltip title="Delete project" arrow>
+                  <Button
+                    className={"button"}
+                    color="primary"
+                    variant="contained"
+                    size="small"
+                    onClick={() => handleDeleteProject(item.id)}
+                  >
+                    <DeleteIcon />
+                  </Button>
+                </Tooltip>
               </TableCell>
             </TableRow>
           )
@@ -140,7 +168,11 @@ const ProjectsList = (props) => {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <EditProject initialProjectData={initialProjectData} projClicked={projClicked} setOpenPopup={setOpenPopup} setOpenEditSnack={setOpenEditSnack}/>
+        <EditProject
+          initialProjectData={initialProjectData}
+          projClicked={projClicked}
+          setOpenPopup={setOpenPopup}
+          setOpenEditSnack={setOpenEditSnack}/>
       </Popup>
     </div>
   )

@@ -19,8 +19,9 @@ export default function Projects(props) {
   const initialProjectData = {
     projectName: '',
     startDate: new Date(),
-    launchDate: new Date(),
-    devReviewDate: new Date(),
+    dueDate: new Date(),
+    projectManager: '',
+    dev: '',
     lastModified: currentDateTime(),
     projectNotes: '',
     load: 0

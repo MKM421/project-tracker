@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dialog, DialogTitle, DialogContent, Typography, Button } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, Typography, Button, Tooltip } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 
 export default function Popup(props) {
@@ -13,14 +13,16 @@ export default function Popup(props) {
           <Typography variant="h5" component="div">
             {title}
           </Typography>
-          <Button
-            color="secondary"
-            variant="contained"
-            size="small"
-            className="button button--red"
-            onClick={() => { setOpenPopup(false) }}>
-            <CloseIcon />
-          </Button>
+          <Tooltip title="close" arrow>
+            <Button
+              color="primary"
+              variant="contained"
+              size="small"
+              className="button button--red"
+              onClick={() => { setOpenPopup(false) }}>
+              <CloseIcon />
+            </Button>
+          </Tooltip>
         </div>
       </DialogTitle>
       <DialogContent dividers>

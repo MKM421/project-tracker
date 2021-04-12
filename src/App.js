@@ -10,7 +10,9 @@ function App() {
       <header className="App-header">
         <h1>Project Tracker</h1>
       </header>
-          <Projects/>
+      <div className="project-container">
+        <Projects/>
+      </div>
     </div>
   );
 }
