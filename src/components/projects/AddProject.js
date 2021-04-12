@@ -3,7 +3,10 @@ import React, { useContext, useState } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Controls from "../controls/Controls";
 import Snackbar from '@material-ui/core/Snackbar';
+import Tooltip from '@material-ui/core/Tooltip';
 import Alert from '@material-ui/lab/Alert';
+import AddIcon from '@material-ui/icons/Add';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { v4 as uuidv4 } from 'uuid';
 // FILE IMPORTS
 import SearchItem from '../SearchItem';
@@ -28,7 +31,6 @@ const AddProject = (props) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpenSnack(false);
   };
 
@@ -37,13 +39,16 @@ const AddProject = (props) => {
     <div>
       <Toolbar className="table-header">
         <SearchItem />
-        <Controls.Button
-          text="Add Project"
-          color="primary"
-          size="medium"
-          className="add-btn"
-          onClick={() => { setOpenPopup(true); }}
-        />
+        <Tooltip title="Add new project" arrow>
+          <Controls.Button
+            text="Add Project"
+            color="primary"
+            size="large"
+            className="add-btn"
+            startIcon={<AddCircleOutlineIcon/>}
+            onClick={() => { setOpenPopup(true); }}
+          />
+        </Tooltip>
       </Toolbar>
 
       <Snackbar open={openSnack} autoHideDuration={3000} onClose={handleSnackClose}>
@@ -56,7 +61,10 @@ const AddProject = (props) => {
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
       >
-        <ProjectForm initialProjectData={initialProjectData} addProject={addProject} />
+        <ProjectForm
+          initialProjectData={initialProjectData}
+          addProject={addProject}
+        />
 
       </Popup>
     </div>

@@ -7,7 +7,6 @@
   pointer-events: none;
 }
 
-
 .App-header {
   background-color: #282c34;
   min-height: 5vh;
@@ -27,5 +26,16 @@
   padding:3em 5em;
 }
 .table-header .add-btn {
-  margin-left:40px;
+  margin-left:15px;
+}
+.project-container {
+  max-width:1170px;
+  margin:0 auto;
+  padding-top:1em;
+}
+.MuiFormControl-root {
+  display:flex !important;
+}
+.action-btn {
+  margin-right:7px !important;
 }
