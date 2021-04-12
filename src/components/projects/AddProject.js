@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import Controls from "../controls/Controls";
 import Snackbar from '@material-ui/core/Snackbar';
-import Tooltip from '@material-ui/core/Tooltip';
 import Alert from '@material-ui/lab/Alert';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { v4 as uuidv4 } from 'uuid';
@@ -38,7 +37,7 @@ const AddProject = (props) => {
     <div>
       <Toolbar className="table-header">
         <SearchItem />
-        <Tooltip title="Add new project" arrow>
+
           <Controls.Button
             text="Add Project"
             color="primary"
@@ -47,7 +46,7 @@ const AddProject = (props) => {
             startIcon={<AddCircleOutlineIcon/>}
             onClick={() => { setOpenPopup(true); }}
           />
-        </Tooltip>
+  
       </Toolbar>
 
       <Snackbar open={openSnack} autoHideDuration={3000} onClose={handleSnackClose}>

@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import Tooltip from '@material-ui/core/Tooltip';
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -101,7 +100,7 @@ const ProjectsList = (props) => {
               <TableCell>{item.dev}</TableCell>
               <TableCell>{item.lastModified}</TableCell>
               <TableCell>
-                <Tooltip title="Edit project" arrow>
+
                   <Button
                     className="action-btn"
                     color="primary"
@@ -111,8 +110,8 @@ const ProjectsList = (props) => {
                   >
                     <EditIcon />
                   </Button>
-                </Tooltip>
-                <Tooltip title="Delete project" arrow>
+
+
                   <Button
                     className={"button"}
                     color="primary"
@@ -122,7 +121,7 @@ const ProjectsList = (props) => {
                   >
                     <DeleteIcon />
                   </Button>
-                </Tooltip>
+            
               </TableCell>
             </TableRow>
           )
