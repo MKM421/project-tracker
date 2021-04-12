@@ -5,7 +5,6 @@ import Controls from "../controls/Controls";
 import Snackbar from '@material-ui/core/Snackbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Alert from '@material-ui/lab/Alert';
-import AddIcon from '@material-ui/icons/Add';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { v4 as uuidv4 } from 'uuid';
 // FILE IMPORTS

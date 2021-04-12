@@ -47,10 +47,6 @@ const ProjectsList = (props) => {
     recordsAfterPagingAndSorting
   } = useTable(projects, headCells);
 
-  const routeToTracks = (projID) => {
-    return props.history.push({ pathname: `/projects/${projID}` });
-  }
-
   const handleClickDelete = () => {
     projectsDispatch({ type: "REMOVE_PROJECT", id: projClicked })
     setOpenSnack(true);
