@@ -126,7 +126,7 @@ const EditProject = (props) => {
             label="Project Notes"
             multiline={true}
             rows={6}
-            value={values.projectNotes.trim('')}
+            value={values.projectNotes}
             onChange={handleInputChange}
             error={errors.fullName}
           />
