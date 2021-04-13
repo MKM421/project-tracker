@@ -1,5 +1,5 @@
 // PACKAGE IMPORTS
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import Button from '@material-ui/core/Button';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
@@ -19,6 +19,7 @@ import ProjectsContext from '../../context/projects-context';
 import visibleProjects from '../../utils/visibleProjects';
 import EditProject from './EditProject'
 import { dateTimeOptions } from '../../utils/currentDateTime';
+
 
 const headCells = [
   { id: 'projectName', label: 'Project Name' },
@@ -72,19 +73,6 @@ const ProjectsList = (props) => {
   }
 
 
-  // save data to localStorage
-  useEffect(() => {
-    localStorage.setItem('project-list', JSON.stringify(projects));
-  }, [projects]);
-
-  // get project data from local storage
-  useEffect(() => {
-    let savedProjects = localStorage.getItem('project-list');
-    if (savedProjects) {
-      //setProjects(JSON.parse(savedProjects))
-      //projectsDispatch({ type: 'ADD_PROJECT'});
-    }
-  }, [])
 
 
   return (
@@ -121,7 +109,7 @@ const ProjectsList = (props) => {
                   >
                     <DeleteIcon />
                   </Button>
-            
+
               </TableCell>
             </TableRow>
           )
