@@ -9,13 +9,13 @@ import projectsReducer from '../../reducers/projects';
 import FiltersContext from '../../context/filters-context';
 import filtersReducer from '../../reducers/filter';
 import currentDateTime from '../../utils/currentDateTime';
-import { projectData } from '../../utils/projectData';
 
 
 export default function Projects(props) {
 
   const [projects, projectsDispatch] = useReducer(projectsReducer, [
     {
+      id:0,
       projectName: 'Project-A',
       startDate: new Date(),
       dueDate: new Date(),
@@ -25,6 +25,7 @@ export default function Projects(props) {
       projectNotes: 'Awesome project!',
     },
     {
+      id:1,
       projectName: 'Project-B',
       startDate: new Date(),
       dueDate: new Date(),
@@ -34,6 +35,7 @@ export default function Projects(props) {
       projectNotes: 'Getting there!',
     },
     {
+      id:2,
       projectName: 'Project-C',
       startDate: new Date(),
       dueDate: new Date(),
@@ -43,6 +45,7 @@ export default function Projects(props) {
       projectNotes: 'This project rocks!',
     },
     {
+      id:3,
       projectName: 'Project-D',
       startDate: new Date(),
       dueDate: new Date(),
